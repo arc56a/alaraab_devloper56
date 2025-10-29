@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>العرّاب — CyberFire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- إضافة مكتبة Font Awesome للأيقونات الاحترافية --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Orbitron',sans-serif;
+      background:#000;
+      color:#ffe9c4;
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    #bg-video{
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      z-index:-3;
+      filter:brightness(0.35) saturate(1.3);
+    }
+
+    .overlay{
+      position:fixed;inset:0;
+      background:radial-gradient(circle at center,rgba(255,100,0,0.2) 0%,rgba(0,0,0,0.9) 80%);
+      z-index:-2;
+    }
+
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:30px 60px;
+    }
+    header h1{
+      font-size:3rem;
+      background:linear-gradient(90deg,#ffb300,#ff3300);
+      -webkit-background-clip:text;
+      color:transparent;
+      text-shadow:0 0 20px #ff3300;
+      letter-spacing:3px;
+      /* إعدادات التحول 3D للسكربت الجديد */
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.1s ease-out; /* انتقال خفيف لزيادة سلاسة الحركة */
+    }
+    
+    header p{
+      font-size:1rem;color:#ffd8a6;opacity:0.85;text-align:center;margin-top:5px;
+    }
+
+    .socials a{
+      margin-left:15px;
+      text-decoration:none;
+      font-size:1.8rem;
+      color:#ff6600;
+      transition:0.3s;
+    }
+    .socials a:hover{color:#ffaa33;text-shadow:0 0 15px #ff3300;transform:scale(1.2)}
+
+    .slider{
+      position:relative;margin:50px auto;width:90%;max-width:1100px;height:500px;overflow:hidden;
+      border:2px solid rgba(255,120,0,0.3);border-radius:20px;
+      box-shadow:0 0 30px rgba(255,80,0,0.4);
+    }
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out}
+    .slide.active{opacity:1}
+    .slide img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8)}
+
+    .dots{
+      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      display:flex;gap:10px;
+    }
+    .dots button{
+      width:12px;height:12px;border-radius:50%;border:none;cursor:pointer;
+      background:rgba(255,150,0,0.3);transition:0.3s;
+    }
+    .dots button.active{background:#ff6600;box-shadow:0 0 15px #ff3300}
+
+    .apps{max-width:1100px;margin:80px auto;background:rgba(30,10,0,0.3);padding:30px;border-radius:15px;backdrop-filter:blur(8px);border:1px solid rgba(255,100,0,0.2)}
+    .apps h2{text-align:center;color:#ffa42b;font-size:2rem;text-shadow:0 0 20px #ff5500;margin-bottom:25px}
+    /* تعديل: تصميم الشبكة ليسمح ببطاقات متعددة */
+    .apps-grid{display:flex;justify-content:center;flex-wrap: wrap; gap:20px; min-height: 200px;} 
+
+    .app-card{background:rgba(40,10,0,0.4);border:1px solid rgba(255,100,0,0.2);border-radius:10px;padding:15px;transition:0.3s;cursor:pointer;display:flex;flex-direction:column;gap:10px; max-width: 300px; width: 100%;}
+    .app-card:hover{transform:translateY(-5px);box-shadow:0 0 25px rgba(255,80,0,0.4)}
+    .app-card img{width:100%;height:160px;border-radius:10px;object-fit:cover;margin-bottom:10px; background-color: rgba(255, 255, 255, 0.1);}
+    .app-card h3{color:#ffae42;margin-bottom:6px;text-shadow:0 0 12px #ff4400}
+    .app-card p{font-size:0.85rem;color:#ffddaa;opacity:0.8;margin-bottom:8px}
+    .app-buttons{display:flex;gap:10px;flex-wrap:wrap}
+    .app-buttons .btn{flex:1;padding:8px 0;border:none;border-radius:8px;font-weight:700;color:#000;background:linear-gradient(90deg,#ff6600,#ffb300);text-align:center;cursor:pointer;transition:0.3s}
+    .app-buttons .btn:hover{background:linear-gradient(90deg,#ffb300,#ff3300)}
+    
+    /* أنماط النافذة المنبثقة العامة */
+    .modal{
+      display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:10;
+    }
+    .modal.active{display:flex}
+    .modal-content{
+      background:rgba(40,10,0,0.9);padding:30px;border-radius:15px;border:1px solid rgba(255,100,0,0.4);max-width:500px;width:90%;
+      color:#ffe2c0;text-align:center;box-shadow:0 0 30px rgba(255,80,0,0.4);
+    }
+    .modal-content h3{color:#ffae42;margin-bottom:10px;text-shadow:0 0 10px #ff5500}
+    .close-btn{margin-top:20px;padding:8px 20px;background:#ff6600;color:#000;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:0.3s}
+    .close-btn:hover{background:#ffaa33;}
+
+    /* أنماط ReCAPTCHA Modal */
+    #recaptcha-modal {
+        display: flex; /* إظهارها افتراضياً عند التحميل */
+        background: #000; /* خلفية سوداء */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* أعلى z-index لضمان أنها في المقدمة */
+        position: fixed;
+        inset: 0;
+        opacity: 1; /* التأكد من أنها مرئية */
+        transition: opacity 0.5s ease-out;
+    }
+    #recaptcha-modal.hidden {
+        opacity: 0;
+        pointer-events: none; /* تعطيل التفاعل بعد الاختفاء */
+    }
+    .recaptcha-content {
+        background: rgba(30,10,0,0.9);
+        padding: 40px;
+        border-radius: 15px;
+        border: 2px solid rgba(255,100,0,0.5);
+        box-shadow: 0 0 40px rgba(255,80,0,0.6);
+        text-align: center;
+        color: #ffe2c0;
+    }
+    .recaptcha-content h3 {
+        color: #ffaa33;
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+    }
+    
+    /* منطق مربع التحقق المحاكي الجديد */
+    #custom-checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 30px auto 0 auto;
+        padding: 10px 20px;
+        width: fit-content;
+        background: rgba(255, 255, 255, 0.05); /* خلفية خفيفة للحاوية */
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 100, 0, 0.3);
+    }
+    #custom-checkbox-container:hover {
+        background: rgba(255, 102, 0, 0.1);
+        box-shadow: 0 0 15px rgba(255, 179, 0, 0.3);
+    }
+
+    #custom-checkbox {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #ff6600;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, border-color 0.3s;
+        border-radius: 4px;
+        box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+    }
+    
+    #custom-checkbox.checked {
+        background-color: #10b981; /* أخضر عند التحقق */
+        border-color: #10b981;
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+    }
+
+    #check-icon {
+        color: #fff;
+        font-size: 18px;
+        display: none; /* مخفي مبدئياً */
+    }
+    
+    #custom-checkbox.checked #check-icon {
+        display: block; /* يظهر عند التحقق */
+    }
+    
+    #custom-checkbox-container label {
+        font-size: 1rem;
+        color: #ffaa33;
+        font-weight: 400; /* تغيير الخط لجعله أقل بروزاً من العنوان */
+        cursor: pointer;
+    }
+    /* ------------------------------------------- */
+    /* تحسينات ملائمة أجهزة الهواتف (Media Queries) */
+    /* ------------------------------------------- */
+    @media (max-width: 640px) {
+        header {
+          padding: 20px 20px;
+        }
+        header h1 {
+          font-size: 2rem; /* تصغير حجم العنوان */
+        }
+        header p {
+            font-size: 0.8rem;
+        }
+        .socials a {
+          font-size: 1.5rem;
+          margin-left: 10px;
+        }
+        .slider {
+          height: 300px; /* تقليل ارتفاع شريط الصور */
+          margin: 30px auto;
+        }
+        .apps {
+          padding: 20px 15px;
+          margin: 40px auto;
+        }
+        .app-card {
+            max-width: 100%; /* جعل البطاقة تأخذ كامل العرض المتاح في الشاشات الصغيرة */
+        }
+        footer {
+            font-size: 0.8rem;
+        }
+        .recaptcha-content {
+            padding: 25px;
+        }
+        .recaptcha-content h3 {
+            font-size: 1.4rem;
+        }
+        #custom-checkbox-container {
+             gap: 10px;
+             padding: 8px 15px;
+        }
+        #custom-checkbox {
+             width: 25px;
+             height: 25px;
+        }
+        #custom-checkbox-container label {
+             font-size: 0.9rem;
+        }
+    }
+  </style>
+</head>
+<body>
+  <!-- نافذة التحقق المحاكية (Simulated Check Modal) --><div id="recaptcha-modal">
+      <div class="recaptcha-content">
+          <h3>العرّاب — تحقق أنك لست روبوتًا</h3>
+          
+          <!-- مربع التحقق المحاكي الجديد --><div id="custom-checkbox-container">
+             <div id="custom-checkbox">
+                <i class="fas fa-check" id="check-icon"></i>
+             </div>
+             <label for="custom-checkbox">أنا لست روبوتًا</label>
+          </div>
+          <!-- رسالة النجاح الجديدة --><p id="checkMessage" style="color: #10b981; margin-top: 25px; font-size: 1rem; display: none;">تم التحقق بنجاح. يتم الدخول...</p>
+      </div>
+  </div>
+
+  <!-- محتوى الموقع الأساسي (مخفي مبدئياً) --><div id="main-content" style="display:none;">
+    <video id="bg-video" autoplay loop muted>
+      <source src="https://cdn.pixabay.com/vimeo/764965182/fire-14494.mp4?width=640&hash=a1d6a9b96a9b06c71a8b6ab75cfc1c8e5f88f1e9" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <header>
+      <div>
+        <!-- تم إضافة id="movingText" للتحكم به عبر الجافاسكربت --><h1 id="movingText">العرّاب</h1>
+        <p>ar_c56</p>
+      </div>
+      <div class="socials">
+        <!-- تم تحديث رابط الإنستغرام --><a href="https://www.instagram.com/ar_c56?igsh=MXFyYWl3cXQ2OGJ2ZQ==" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+        <!-- تم تحديث رابط التلغرام --><a href="https://t.me/darkzon39" title="Telegram" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+      </div>
+    </header>
+
+    <div class="slider">
+      <!-- صورة 1 الجديدة --><div class="slide active"><img src="https://wallpapercave.com/wp/wp12371287.jpg"></div>
+      <!-- صورة 2 الجديدة --><div class="slide"><img src="https://www.xtrafondos.com/wallpapers/cyberpunk-2077-chico-samurai-11363.jpg"></div>
+      <!-- صورة 3 الجديدة --><div class="slide"><img src="https://images.hdqwalls.com/wallpapers/can-hack-you-21.jpg"></div>
+      <div class="dots"></div>
+    </div>
+
+    <section class="apps">
+      <h2>تطبيقاتي</h2>
+      
+      <!-- منطقة عرض التطبيقات الثابتة --><div class="apps-grid">
+        
+        <!-- بطاقة تطبيق RF Radar الثابتة --><div class="app-card" 
+             data-title="RF Radar" 
+             data-desc="تطبيق RF Radar هو تطبيق يظهر لك مواصفات هاتفك ويحتوي على ميزة رادار البلوتوث والواي فاي التي تتيح لك قياس قوة الإشارات وبعد المسافة.">
+          <!-- تحديث رابط الصورة هنا --><img src="https://c.top4top.io/p_3589batq51.png">
+          <h3>RF Radar</h3>
+          <p>مواصفات الهاتف ورادار البلوتوث والواي فاي 📡</p>
+          <div class="app-buttons">
+            <!-- زر التحميل - يجب وضع الرابط الفعلي هنا --><a href="#" class="btn" target="_blank">تحميل</a> 
+            <button class="btn open-desc">وصف</button>
+          </div>
+        </div>
+        <!-- نهاية بطاقة التطبيق --></div>
+    </section>
+
+    <!-- النافذة المنبثقة لعرض وصف التطبيق --><div class="modal" id="appModal">
+      <div class="modal-content">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+        <button class="close-btn">إغلاق</button>
+      </div>
+    </div>
+  </div><!-- نهاية main-content --><footer>© 2025 العرّاب — CyberFire Design</footer>
+
+  <script>
+    /* منطق النافذة المنبثقة (Modal) */
+    const modal = document.getElementById('appModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = document.querySelector('.close-btn');
+
+    const setupModalListeners = () => {
+        document.querySelectorAll('.open-desc').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const card = e.target.closest('.app-card');
+                if (card) {
+                    modalTitle.textContent = card.dataset.title;
+                    modalDesc.textContent = card.dataset.desc;
+                    modal.classList.add('active');
+                }
+            });
+        });
+    };
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+
+    /* منطق حركة العنوان (3D Rotation) */
+    let angleY = 0;
+    let angleX = 0;
+    let textElement;
+
+    function rotateText() {
+        if (!textElement) return;
+
+        angleY += 0.5; // سرعة الدوران حول Y
+        angleX = 10 * Math.sin(angleY * Math.PI / 180); 
+        
+        textElement.style.transform = `rotateY(${angleY}deg) rotateX(${angleX}deg)`;
+        
+        requestAnimationFrame(rotateText);
+    }
+
+    /* منطق شريط الصور الدوار (Carousel) */
+    const initCarousel = () => {
+        const slides = document.querySelectorAll('.slide'); 
+        const dotsContainer = document.querySelector('.dots');
+        
+        if (slides.length === 0 || !dotsContainer) return;
+
+        dotsContainer.innerHTML = ''; 
+        slides.forEach((_,i)=>{
+          const btn=document.createElement('button');
+          if(i===0)btn.classList.add('active');
+          dotsContainer.appendChild(btn);
+        });
+
+        const dots = document.querySelectorAll('.dots button');
+        let current = 0;
+
+        function showSlide(i){
+          if (!slides[i] || !dots[i]) return; 
+          
+          slides.forEach(s=>s.classList.remove('active'));
+          dots.forEach(d=>d.classList.remove('active'));
+          
+          slides[i].classList.add('active'); 
+          dots[i].classList.add('active');
+        }
+
+        setInterval(()=>{
+          current = (current + 1) % slides.length;
+          showSlide(current);
+        }, 5000);
+        
+        dots.forEach((d,i)=>d.addEventListener('click',()=>{
+          current = i;
+          showSlide(i);
+        }));
+    };
+
+
+    // -------------------------------------------
+    // وظيفة تشغيل محتوى الصفحة الأساسي
+    // -------------------------------------------
+    function initializePageContent() {
+        // بدء حركة العنوان
+        textElement = document.getElementById('movingText');
+        if (textElement) {
+            rotateText();
+        }
+        
+        // بدء شريط الصور الدوار
+        initCarousel();
+        
+        // إعداد مستمعي الأحداث للنافذة المنبثقة
+        setupModalListeners();
+    }
+
+    // -------------------------------------------
+    // منطق التحقق المحاكي (Simulated Check Logic)
+    // -------------------------------------------
+
+    const checkContainer = document.getElementById('custom-checkbox-container');
+    const customCheckbox = document.getElementById('custom-checkbox');
+    const checkMessage = document.getElementById('checkMessage');
+    let isChecked = false; // لمنع النقر المتعدد
+
+    // الوظيفة التي تُنفذ عند النقر على مربع "أنا لست روبوتًا"
+    function onSimulatedCheckComplete() {
+        if (isChecked) return; // منع النقر إذا تم التحقق بالفعل
+        isChecked = true;
+
+        // 1. تحديث شكل المربع لإظهار علامة "صح"
+        customCheckbox.classList.add('checked');
+        
+        // 2. عرض رسالة النجاح
+        checkMessage.style.display = 'block';
+
+        // 3. إخفاء المودال وعرض المحتوى بعد تأخير قصير
+        setTimeout(() => {
+            const recaptchaModal = document.getElementById('recaptcha-modal');
+            const mainContent = document.getElementById('main-content');
+            
+            recaptchaModal.classList.add('hidden'); 
+            
+            recaptchaModal.addEventListener('transitionend', () => {
+                recaptchaModal.style.display = 'none';
+                mainContent.style.display = 'block'; 
+                // تشغيل الوظائف الأساسية
+                initializePageContent();
+            }, { once: true });
+        }, 1000); 
+    }
+
+    // إضافة مستمع حدث عند تحميل الصفحة
+    window.onload = function() {
+        // ربط مربع التحقق بالمنطق المحاكي
+        if (checkContainer) {
+            checkContainer.addEventListener('click', onSimulatedCheckComplete);
+        }
+    };
+  </script>
+</body>
+</html>
