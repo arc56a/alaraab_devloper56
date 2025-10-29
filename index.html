@@ -65,7 +65,7 @@
     .slider{
       position:relative;margin:50px auto;width:90%;max-width:1100px;height:500px;overflow:hidden;
       border:2px solid rgba(255,120,0,0.3);border-radius:20px;
-      box-shadow:0 0 30px rgba(255,80,0,0.4);
+      box-shadow:0 0 30px (0, 0, 0, 0.4);
     }
     .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out}
     .slide.active{opacity:1}
@@ -89,11 +89,54 @@
     .app-card{background:rgba(40,10,0,0.4);border:1px solid rgba(255,100,0,0.2);border-radius:10px;padding:15px;transition:0.3s;cursor:pointer;display:flex;flex-direction:column;gap:10px; max-width: 300px; width: 100%;}
     .app-card:hover{transform:translateY(-5px);box-shadow:0 0 25px rgba(255,80,0,0.4)}
     .app-card img{width:100%;height:160px;border-radius:10px;object-fit:cover;margin-bottom:10px; background-color: rgba(255, 255, 255, 0.1);}
-    .app-card h3{color:#ffae42;margin-bottom:6px;text-shadow:0 0 12px #ff4400}
+    .app-card h3{color:#ffae42;margin-bottom:6px;text-shadow:0 0 12px #ff4400; display: flex; align-items: center; justify-content: flex-start;} /* تعديل flex هنا لترتيب العنوان مع الشارة */
     .app-card p{font-size:0.85rem;color:#ffddaa;opacity:0.8;margin-bottom:8px}
-    .app-buttons{display:flex;gap:10px;flex-wrap:wrap}
-    .app-buttons .btn{flex:1;padding:8px 0;border:none;border-radius:8px;font-weight:700;color:#000;background:linear-gradient(90deg,#ff6600,#ffb300);text-align:center;cursor:pointer;transition:0.3s}
+    
+    /* شارة "قريباً" الجديدة بجانب العنوان */
+    .coming-soon-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #ffaa33;
+        background: rgba(255, 102, 0, 0.2);
+        padding: 3px 8px;
+        border-radius: 5px;
+        margin-right: 10px; /* مسافة بين العنوان والشارة */
+        border: 1px solid rgba(255, 102, 0, 0.4);
+        text-shadow: none;
+    }
+    
+    /* تعديل: تصميم أزرار التطبيق لتكون متجاورة ومتعددة */
+    .app-buttons {
+        display: flex;
+        gap: 8px; /* مسافة بين الأزرار */
+        justify-content: flex-start; /* ترتيب الأزرار من اليمين إلى اليسار */
+    }
+    .app-buttons .btn{
+        flex: 1; /* جعل الأزرار تتمدد بشكل متساو */
+        padding:8px 0;
+        border:none;
+        border-radius:8px;
+        font-weight:700;
+        color:#000;
+        background:linear-gradient(90deg,#ff6600,#ffb300);
+        text-align:center;
+        cursor:pointer;
+        transition:0.3s;
+        text-decoration: none; /* مهم للروابط */
+        max-width: 100px; /* تحديد عرض أقصى لتبدو متناسقة */
+    }
     .app-buttons .btn:hover{background:linear-gradient(90deg,#ffb300,#ff3300)}
+    
+    /* أنماط زر "تحميل" لجعله يبدو غير متاح حاليًا ومضلل */
+    .app-buttons .coming-soon {
+        background: rgba(100, 100, 100, 0.3) !important; 
+        color: rgba(255, 255, 255, 0.5) !important;
+        cursor: default !important;
+        box-shadow: none !important;
+    }
+    .app-buttons .coming-soon:hover {
+        background: rgba(100, 100, 100, 0.3) !important;
+    }
     
     /* أنماط النافذة المنبثقة العامة */
     .modal{
@@ -221,6 +264,9 @@
         .app-card {
             max-width: 100%; /* جعل البطاقة تأخذ كامل العرض المتاح في الشاشات الصغيرة */
         }
+        .app-buttons .btn {
+            max-width: 100px; /* ضمان أقصى عرض حتى في الهاتف */
+        }
         footer {
             font-size: 0.8rem;
         }
@@ -292,10 +338,13 @@
              data-title="RF Radar" 
              data-desc="تطبيق RF Radar هو تطبيق يظهر لك مواصفات هاتفك ويحتوي على ميزة رادار البلوتوث والواي فاي التي تتيح لك قياس قوة الإشارات وبعد المسافة.">
           <!-- تحديث رابط الصورة هنا --><img src="https://c.top4top.io/p_3589batq51.png">
-          <h3>RF Radar</h3>
+          <!-- العنوان مع إضافة شارة "قريباً" بجوار اسم التطبيق -->
+          <h3>RF Radar <span class="coming-soon-badge">قريباً</span></h3>
           <p>مواصفات الهاتف ورادار البلوتوث والواي فاي 📡</p>
           <div class="app-buttons">
-            <!-- زر التحميل - يجب وضع الرابط الفعلي هنا --><a href="#" class="btn" target="_blank">تحميل</a> 
+            <!-- الزر الأول (يمين): "تحميل" - مضلل وغير فعال عند النقر -->
+            <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
+            <!-- الزر الثاني (وسط): "وصف" -->
             <button class="btn open-desc">وصف</button>
           </div>
         </div>
