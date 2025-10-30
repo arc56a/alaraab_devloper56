@@ -257,15 +257,28 @@
           height: 300px; /* تقليل ارتفاع شريط الصور */
           margin: 30px auto;
         }
+        .apps-grid {
+             gap: 15px; /* تقليل المسافة بين البطاقات */
+        }
         .apps {
-          padding: 20px 15px;
-          margin: 40px auto;
+          padding: 20px 10px; /* تقليل الحشو الأفقي */
+          margin: 30px auto; /* تقليل الهامش العلوي/السفلي */
         }
         .app-card {
             max-width: 100%; /* جعل البطاقة تأخذ كامل العرض المتاح في الشاشات الصغيرة */
         }
+        .app-card img {
+            height: 120px; /* تقليل ارتفاع الصورة بشكل كبير ليتناسب مع الهاتف */
+            margin-bottom: 8px;
+        }
+        .app-card p {
+            font-size: 0.8rem; /* تصغير حجم خط الوصف */
+            margin-bottom: 6px;
+        }
         .app-buttons .btn {
             max-width: 100px; /* ضمان أقصى عرض حتى في الهاتف */
+            padding: 6px 0; /* تقليل حشو الزر */
+            font-size: 0.9rem; /* تقليل حجم خط الزر */
         }
         footer {
             font-size: 0.8rem;
