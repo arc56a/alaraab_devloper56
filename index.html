@@ -574,7 +574,7 @@
           <h3>العرّاب — تحقق أنك لست روبوتًا</h3>
           
           <!-- نص يظهر العداد التنازلي --><p id="countdownText" style="color: #ffaa33; margin-top: -15px; font-size: 0.9rem;">
-             يتم التحقق من هويتك... (الانتظار: 10 ثوانٍ)
+             يتم التحقق من هويتك... (الانتظار: 5 ثوانٍ)
           </p>
 
           <!-- مربع التحقق المحاكي الجديد --><div id="custom-checkbox-container" class="disabled">
@@ -849,7 +849,7 @@
 
     // الوظيفة التي تبدأ العد التنازلي
     function startCountdown() {
-        let timeLeft = 10;
+        let timeLeft = 5; // تم التغيير من 10 إلى 5 ثوانٍ
         countdownText.textContent = `يتم التحقق من هويتك... (الانتظار: ${timeLeft} ثوانٍ)`;
 
         const timer = setInterval(() => {
