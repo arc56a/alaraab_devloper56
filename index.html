@@ -136,7 +136,11 @@
     }
     .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out}
     .slide.active{opacity:1}
-    .slide img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8)}
+    .slide img{
+        width:100%;height:100%;object-fit:cover;
+        /* تقليل السطوع قليلاً ليتناسب مع الطابع الداكن للموقع */
+        filter:brightness(0.7); 
+    }
 
     .dots{
       position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
@@ -466,8 +470,7 @@
       <div class="recaptcha-content">
           <h3>العرّاب — تحقق أنك لست روبوتًا</h3>
           
-          <!-- نص يظهر العداد التنازلي -->
-          <p id="countdownText" style="color: #ffaa33; margin-top: -15px; font-size: 0.9rem;">
+          <!-- نص يظهر العداد التنازلي --><p id="countdownText" style="color: #ffaa33; margin-top: -15px; font-size: 0.9rem;">
              يتم التحقق من هويتك... (الانتظار: 10 ثوانٍ)
           </p>
 
@@ -499,22 +502,19 @@
     </header>
 
     <!-- لوحة التحكم المصغرة الجديدة (Mini Dashboard) --><div class="mini-dashboard">
-        <!-- مؤشر حالة النظام -->
-        <div class="dash-item">
+        <!-- مؤشر حالة النظام --><div class="dash-item">
             <span class="status-dot"></span>
             <span>حالة النظام:</span>
             <span class="dash-value">Online</span>
         </div>
         
-        <!-- عداد حركة مرور البيانات -->
-        <div class="dash-item">
+        <!-- عداد حركة مرور البيانات --><div class="dash-item">
             <i class="dash-icon fas fa-chart-line"></i>
             <span>حركة البيانات:</span>
             <span class="dash-value" id="dataTraffic">0.0 KB/s</span>
         </div>
         
-        <!-- التاريخ والوقت الفني -->
-        <div class="dash-item">
+        <!-- التاريخ والوقت الفني --><div class="dash-item">
             <i class="dash-icon fas fa-clock"></i>
             <span>وقت النظام:</span>
             <span class="dash-value" id="systemClock">--</span>
@@ -522,9 +522,12 @@
     </div>
 
     <div class="slider">
-      <!-- صورة 1 الجديدة --><div class="slide active"><img src="https://wallpapercave.com/wp/wp12371287.jpg"></div>
-      <!-- صورة 2 الجديدة --><div class="slide"><img src="https://www.xtrafondos.com/wallpapers/cyberpunk-2077-chico-samurai-11363.jpg"></div>
-      <!-- صورة 3 الجديدة --><div class="slide"><img src="https://images.hdqwalls.com/wallpapers/can-hack-you-21.jpg"></div>
+      <!-- صور متحركة (GIFs) - أصبحت هي الأولى --><div class="slide active"><img src="https://i.pinimg.com/originals/59/69/84/59698460a33a71e42ddf46e185e17737.gif" alt="Ghost in the Shell GIF"></div>
+      <div class="slide"><img src="https://wallpapers-clan.com/wp-content/uploads/2024/03/batman-rain-gif-preview-desktop-wallpaper.gif" alt="Batman Rain GIF"></div>
+      <div class="slide"><img src="https://wallpapers-clan.com/wp-content/uploads/2024/08/batman-bats-grey-gif-desktop-wallpaper-preview.gif" alt="Batman Bats GIF"></div>
+      <!-- صور ثابتة أصلية - أصبحت هي الأخيرة --><div class="slide"><img src="https://wallpapercave.com/wp/wp12371287.jpg" alt="Cyberpunk Cityscape"></div>
+      <div class="slide"><img src="https://www.xtrafondos.com/wallpapers/cyberpunk-2077-chico-samurai-11363.jpg" alt="Cyberpunk Samurai"></div>
+      <div class="slide"><img src="https://images.hdqwalls.com/wallpapers/can-hack-you-21.jpg" alt="Can Hack You"></div>
       <div class="dots"></div>
     </div>
 
@@ -536,23 +539,18 @@
         <!-- بطاقة تطبيق RF Radar الثابتة --><div class="app-card neon-glitch" 
              data-title="RF Radar" 
              data-desc="تطبيق RF Radar هو تطبيق يظهر لك مواصفات هاتفك ويحتوي على ميزة رادار البلوتوث والواي فاي التي تتيح لك قياس قوة الإشارات وبعد المسافة.">
-          <!-- تحديث رابط الصورة هنا --><img src="https://c.top4top.io/p_3589batq51.png">
-          <!-- العنوان مع إضافة شارة "قريباً" بجوار اسم التطبيق -->
-          <h3>RF Radar <span class="coming-soon-badge">قريباً</span></h3>
+          <!-- تحديث رابط الصورة هنا --><img src="https://c.top4top.io/p_3589batq51.png" alt="RF Radar Icon">
+          <!-- العنوان مع إضافة شارة "قريباً" بجوار اسم التطبيق --><h3>RF Radar <span class="coming-soon-badge">قريباً</span></h3>
           <p>مواصفات الهاتف ورادار البلوتوث والواي فاي 📡</p>
           <div class="app-buttons">
-            <!-- الزر الأول (يمين): "تحميل" - مضلل وغير فعال عند النقر -->
-            <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
+            <!-- الزر الأول (يمين): "تحميل" - مضلل وغير فعال عند النقر --><a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
             <!-- الزر الثاني (وسط): "وصف" --><button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
-        <!-- نهاية بطاقة التطبيق -->
-        
-        <!-- بطاقة تطبيق مثال ثاني --><div class="app-card neon-glitch" 
+        <!-- نهاية بطاقة التطبيق --><!-- بطاقة تطبيق مثال ثاني --><div class="app-card neon-glitch" 
              data-title="Cyber Tool" 
              data-desc="أداة تحليل شبكات متقدمة بواجهة سايبر بانك. تحليل حزم البيانات واستكشاف نقاط الضعف الافتراضية.">
-          <!-- استخدام صورة placeholder مؤقتاً لتحديد الحجم -->
-          <img src="https://placehold.co/180x100/333333/ffaa33?text=A-2">
+          <!-- استخدام صورة placeholder مؤقتاً لتحديد الحجم --><img src="https://placehold.co/180x100/333333/ffaa33?text=A-2" alt="Cyber Tool Icon">
           <h3>Cyber Tool <span class="coming-soon-badge">قريباً</span></h3>
           <p>أداة تحليل شبكات متقدمة لتحديد الثغرات.</p>
           <div class="app-buttons">
@@ -560,12 +558,10 @@
             <button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
-        <!-- نهاية بطاقة تطبيق مثال ثاني -->
-        
-        <!-- بطاقة تطبيق مثال ثالث --><div class="app-card neon-glitch" 
+        <!-- نهاية بطاقة تطبيق مثال ثاني --><!-- بطاقة تطبيق مثال ثالث --><div class="app-card neon-glitch" 
              data-title="Data Vault" 
              data-desc="تطبيق لحماية الملفات بـ 128-bit Encryption وتخزين آمن للمعلومات الحساسة والمحمية.">
-          <img src="https://placehold.co/180x100/550000/fff3e0?text=Vault">
+          <img src="https://placehold.co/180x100/550000/fff3e0?text=Vault" alt="Data Vault Icon">
           <h3>Data Vault <span class="coming-soon-badge">قريباً</span></h3>
           <p>تطبيق لتشفير الملفات وتخزين آمن للمعلومات.</p>
           <div class="app-buttons">
@@ -573,8 +569,7 @@
             <button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
-        <!-- نهاية بطاقة تطبيق مثال ثالث -->
-      </div>
+        <!-- نهاية بطاقة تطبيق مثال ثالث --></div>
     </section>
 
     <!-- النافذة المنبثقة لعرض وصف التطبيق --><div class="modal" id="appModal">
