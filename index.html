@@ -196,11 +196,18 @@
         transition: all 0.3s;
         border: 1px solid rgba(255, 100, 0, 0.3);
     }
-    #custom-checkbox-container:hover {
+    /* نمط لتعطيل النقر (فترة الانتظار) */
+    #custom-checkbox-container.disabled {
+        opacity: 0.5;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    #custom-checkbox-container:hover:not(.disabled) { /* التأثير فقط عندما لا يكون معطلاً */
         background: rgba(255, 102, 0, 0.1);
         box-shadow: 0 0 15px rgba(255, 179, 0, 0.3);
     }
-
+    
     #custom-checkbox {
         width: 30px;
         height: 30px;
@@ -236,69 +243,110 @@
         font-weight: 400; /* تغيير الخط لجعله أقل بروزاً من العنوان */
         cursor: pointer;
     }
+    
+    /* أنماط الفوتر (Footer) لتوسيط النص وضمان نمط السايبر بنك */
+    footer {
+        text-align: center; /* توجيه النص إلى الوسط */
+        padding: 20px 0; /* مسافة حول النص */
+        color: #ffa42b;
+        font-size: 0.9rem;
+        font-family:'Orbitron',sans-serif; /* تطبيق خط القالب */
+        text-shadow: 0 0 5px rgba(255, 80, 0, 0.4); /* إضافة تأثير توهج خفيف */
+    }
+
     /* ------------------------------------------- */
-    /* تحسينات ملائمة أجهزة الهواتف (Media Queries) */
+    /* تحسينات ملائمة أجهزة الهواتف (Mobile First/Media Queries) */
     /* ------------------------------------------- */
     @media (max-width: 640px) {
+        /* الهيدر والعنوان */
         header {
-          padding: 20px 20px;
+          padding: 15px 20px; /* تقليل حشو الهيدر */
         }
         header h1 {
-          font-size: 2rem; /* تصغير حجم العنوان */
+          font-size: 1.8rem; /* تصغير حجم العنوان أكثر */
         }
         header p {
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* تصغير حجم النص المرافق */
         }
         .socials a {
-          font-size: 1.5rem;
-          margin-left: 10px;
+          font-size: 1.4rem;
+          margin-left: 8px;
         }
+
+        /* شريط الصور */
         .slider {
-          height: 300px; /* تقليل ارتفاع شريط الصور */
-          margin: 30px auto;
+          height: 250px; /* تقليل ارتفاع شريط الصور أكثر */
+          margin: 25px auto;
+        }
+
+        /* قسم التطبيقات الرئيسي (تم تصغيره أكثر) */
+        .apps {
+          padding: 10px 5px; /* تقليل الحشو الأفقي والعمودي لصندوق التطبيقات */
+          margin: 20px auto; /* تقليل الهامش العلوي/السفلي */
+        }
+        .apps h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
         .apps-grid {
-             gap: 15px; /* تقليل المسافة بين البطاقات */
+             gap: 10px; /* تقليل المسافة بين البطاقات */
         }
-        .apps {
-          padding: 20px 10px; /* تقليل الحشو الأفقي */
-          margin: 30px auto; /* تقليل الهامش العلوي/السفلي */
-        }
+
+        /* بطاقة التطبيق (App Card) - تم تصغيرها أكثر */
         .app-card {
-            max-width: 100%; /* جعل البطاقة تأخذ كامل العرض المتاح في الشاشات الصغيرة */
+            max-width: 100%; 
+            padding: 10px; /* تصغير حشو البطاقة */
+            gap: 6px; /* تقليل المسافة بين عناصر البطاقة */
         }
         .app-card img {
-            height: 120px; /* تقليل ارتفاع الصورة بشكل كبير ليتناسب مع الهاتف */
-            margin-bottom: 8px;
+            height: 100px; /* ارتفاع الصورة المحدد للهاتف (أصغر) */
+            margin-bottom: 5px;
+        }
+        .app-card h3 {
+            font-size: 1rem; /* تصغير حجم عنوان التطبيق */
+            margin-bottom: 2px;
         }
         .app-card p {
-            font-size: 0.8rem; /* تصغير حجم خط الوصف */
-            margin-bottom: 6px;
+            font-size: 0.7rem; /* تصغير حجم خط الوصف */
+            margin-bottom: 5px;
         }
+        
+        /* شارة "قريباً" */
+        .coming-soon-badge {
+            font-size: 0.6rem;
+            padding: 1px 4px;
+        }
+
+        /* الأزرار */
         .app-buttons .btn {
-            max-width: 100px; /* ضمان أقصى عرض حتى في الهاتف */
-            padding: 6px 0; /* تقليل حشو الزر */
-            font-size: 0.9rem; /* تقليل حجم خط الزر */
+            max-width: 80px;
+            padding: 5px 0; 
+            font-size: 0.8rem; 
         }
+
+        /* الفوتر (Footer) */
         footer {
-            font-size: 0.8rem;
+            font-size: 0.7rem; /* تصغير حجم خط حقوق النشر */
+            padding: 10px 0;
         }
+        
+        /* نافذة التحقق */
         .recaptcha-content {
-            padding: 25px;
+            padding: 15px;
         }
         .recaptcha-content h3 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
         }
         #custom-checkbox-container {
              gap: 10px;
-             padding: 8px 15px;
+             padding: 6px 12px;
         }
         #custom-checkbox {
-             width: 25px;
-             height: 25px;
+             width: 20px;
+             height: 20px;
         }
         #custom-checkbox-container label {
-             font-size: 0.9rem;
+             font-size: 0.75rem;
         }
     }
   </style>
@@ -308,7 +356,12 @@
       <div class="recaptcha-content">
           <h3>العرّاب — تحقق أنك لست روبوتًا</h3>
           
-          <!-- مربع التحقق المحاكي الجديد --><div id="custom-checkbox-container">
+          <!-- نص يظهر العداد التنازلي -->
+          <p id="countdownText" style="color: #ffaa33; margin-top: -15px; font-size: 0.9rem;">
+             يتم التحقق من هويتك... (الانتظار: 10 ثوانٍ)
+          </p>
+
+          <!-- مربع التحقق المحاكي الجديد --><div id="custom-checkbox-container" class="disabled">
              <div id="custom-checkbox">
                 <i class="fas fa-check" id="check-icon"></i>
              </div>
@@ -371,7 +424,7 @@
         <button class="close-btn">إغلاق</button>
       </div>
     </div>
-  </div><!-- نهاية main-content --><footer>© 2025 العرّاب — CyberFire Design</footer>
+  </div><!-- نهاية main-content --><footer>© 2025 حقوق الطبع والنشر محفوظة لدى العراب</footer>
 
   <script>
     /* منطق النافذة المنبثقة (Modal) */
@@ -444,7 +497,7 @@
         
         dots.forEach((d,i)=>d.addEventListener('click',()=>{
           current = i;
-          showSlide(i);
+          showSlide(current);
         }));
     };
 
@@ -473,11 +526,32 @@
     const checkContainer = document.getElementById('custom-checkbox-container');
     const customCheckbox = document.getElementById('custom-checkbox');
     const checkMessage = document.getElementById('checkMessage');
+    const countdownText = document.getElementById('countdownText');
     let isChecked = false; // لمنع النقر المتعدد
 
-    // الوظيفة التي تُنفذ عند النقر على مربع "أنا لست روبوتًا"
+    // الوظيفة التي تبدأ العد التنازلي
+    function startCountdown() {
+        let timeLeft = 10;
+        countdownText.textContent = `يتم التحقق من هويتك... (الانتظار: ${timeLeft} ثوانٍ)`;
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                countdownText.textContent = `يتم التحقق من هويتك... (الانتظار: ${timeLeft} ثوانٍ)`;
+            } else {
+                clearInterval(timer);
+                countdownText.textContent = 'تم التحقق الأولي. يمكنك الآن الضغط على الزر.';
+                // تمكين الزر بعد انتهاء العداد
+                checkContainer.classList.remove('disabled');
+            }
+        }, 1000);
+    }
+
+    // الوظيفة التي تُنفذ عند النقر على مربع "أنا لست روبوتًا" (بعد التمكين)
     function onSimulatedCheckComplete() {
-        if (isChecked) return; // منع النقر إذا تم التحقق بالفعل
+        // يجب أن يكون الزر غير معطل ليعمل هذا
+        if (checkContainer.classList.contains('disabled') || isChecked) return; 
+        
         isChecked = true;
 
         // 1. تحديث شكل المربع لإظهار علامة "صح"
@@ -485,6 +559,7 @@
         
         // 2. عرض رسالة النجاح
         checkMessage.style.display = 'block';
+        countdownText.style.display = 'none'; // إخفاء نص العداد
 
         // 3. إخفاء المودال وعرض المحتوى بعد تأخير قصير
         setTimeout(() => {
@@ -504,6 +579,9 @@
 
     // إضافة مستمع حدث عند تحميل الصفحة
     window.onload = function() {
+        // بدء العداد فور تحميل الصفحة
+        startCountdown();
+        
         // ربط مربع التحقق بالمنطق المحاكي
         if (checkContainer) {
             checkContainer.addEventListener('click', onSimulatedCheckComplete);
