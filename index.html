@@ -148,7 +148,7 @@
         display: flex;
         gap: 20px;
         padding: 10px 0;
-        overflow-x: auto; /* تمكين التمرير الأفقي */
+        overflow-x: auto; /* *** تمكين التمرير الأفقي *** */
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
     }
@@ -157,7 +157,7 @@
     .news-container { -ms-overflow-style: none; scrollbar-width: none; }
     
     .news-card {
-        flex: 0 0 280px; /* حجم ثابت للبطاقة */
+        flex: 0 0 280px; /* حجم ثابت للبطاقة يسمح بالتمرير عند تجاوز عدد البطاقات */
         scroll-snap-align: start;
         background: rgba(30, 10, 0, 0.5);
         border: 1px solid rgba(255, 100, 0, 0.3);
@@ -481,6 +481,7 @@
         }
         .news-container {
              gap: 10px;
+             /* تمكين التمرير الأفقي على الأجهزة الصغيرة أيضاً */
         }
         .news-card {
             flex: 0 0 200px; 
