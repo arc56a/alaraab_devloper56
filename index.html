@@ -91,7 +91,7 @@
     .mini-dashboard{
         max-width: 1100px;
         width: 90%;
-        margin: 10px auto 40px auto; /* هامش علوي بعد الهيدر وهامش سفلي قبل السلايدر */
+        margin: 10px auto 30px auto; 
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -124,6 +124,82 @@
         border-radius: 50%;
         background-color: #10b981; /* أخضر للدلالة على الاتصال */
         box-shadow: 0 0 8px #10b981;
+    }
+    
+    /* ------------------------------------------- */
+    /* مركز الأخبار والتحديثات (Cyber Log) */
+    /* ------------------------------------------- */
+    .news-center {
+        max-width: 1100px;
+        width: 90%;
+        margin: 0 auto 50px auto; /* هامش سفلي قبل السلايدر */
+    }
+    .news-center h2 {
+        color: #ffe9c4;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        padding-right: 10px;
+        border-right: 3px solid #ff6600;
+        display: inline-block;
+        text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+    }
+    
+    .news-container {
+        display: flex;
+        gap: 20px;
+        padding: 10px 0;
+        overflow-x: auto; /* تمكين التمرير الأفقي */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+    /* إخفاء شريط التمرير الافتراضي */
+    .news-container::-webkit-scrollbar { display: none; }
+    .news-container { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .news-card {
+        flex: 0 0 280px; /* حجم ثابت للبطاقة */
+        scroll-snap-align: start;
+        background: rgba(30, 10, 0, 0.5);
+        border: 1px solid rgba(255, 100, 0, 0.3);
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 0 15px rgba(255, 51, 0, 0.1);
+        transition: 0.3s;
+        min-height: 120px;
+    }
+    .news-card:hover {
+        box-shadow: 0 0 25px rgba(255, 51, 0, 0.4);
+        transform: translateY(-3px);
+    }
+    
+    .news-card h3 {
+        font-size: 1rem;
+        color: #ffaa33;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .news-card .icon {
+        color: #ff3300;
+        font-size: 1.2rem;
+        text-shadow: 0 0 5px #ff3300;
+    }
+    
+    .news-card p {
+        font-size: 0.8rem;
+        color: #ffddaa;
+        line-height: 1.5;
+        opacity: 0.9;
+    }
+    
+    .news-card .date {
+        display: block;
+        margin-top: 10px;
+        font-size: 0.7rem;
+        color: #ff6600;
+        text-align: left;
     }
 
     /* ------------------------------------------- */
@@ -394,6 +470,33 @@
             font-size: 1rem;
         }
         
+        /* مركز الأخبار على الهاتف */
+        .news-center {
+            margin-bottom: 30px;
+            width: 95%; /* زيادة العرض قليلا */
+        }
+        .news-center h2 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .news-container {
+             gap: 10px;
+        }
+        .news-card {
+            flex: 0 0 200px; 
+            padding: 12px;
+            min-height: 100px;
+        }
+        .news-card h3 {
+            font-size: 0.9rem;
+        }
+        .news-card p {
+            font-size: 0.75rem;
+        }
+        .news-card .date {
+            font-size: 0.6rem;
+        }
+        
         .slider {
           height: 250px; 
           margin: 25px auto;
@@ -520,7 +623,33 @@
             <span class="dash-value" id="systemClock">--</span>
         </div>
     </div>
-
+    
+    <!-- مركز الأخبار والتحديثات (Cyber Log) - القسم الجديد --><div class="news-center">
+        <h2>مركز التحكم | Cyber Log</h2>
+        <div class="news-container">
+            <!-- بطاقة خبر 1: إضافة تطبيق RF Radar --><div class="news-card">
+                <h3><i class="icon fas fa-magic"></i> تطبيق جديد: RF Radar</h3>
+                <p>تم إضافة بطاقة تطبيق RF Radar إلى قائمة التطبيقات! التطبيق قيد التطوير حاليًا وسيتم إطلاقه قريبًا جدًا. ترقبوا المزيد!</p>
+                <span class="date">تم الإضافة: 2025/10/29</span>
+            </div>
+            <!-- بطاقة خبر 2: تحديثات جمالية --><div class="news-card">
+                <h3><i class="icon fas fa-brush"></i> تحديث واجهة المستخدم</h3>
+                <p>تعديلات شاملة على الألوان وتأثيرات النيون Glitch لتحسين التجربة البصرية وجعل الموقع أكثر تفاعلية.</p>
+                <span class="date">تاريخ التحديث: 2025/10/30</span>
+            </div>
+            <!-- بطاقة خبر 3: ترتيب السلايدر --><div class="news-card">
+                <h3><i class="icon fas fa-sort-numeric-up"></i> ترتيب السلايدر</h3>
+                <p>تم عكس ترتيب شرائح السلايدر ليصبح المتحرك (GIFs) أولاً، يليه الصور الثابتة، لتجربة انتقال أكثر حيوية.</p>
+                <span class="date">تاريخ التعديل: 2025/10/30</span>
+            </div>
+             <!-- بطاقة خبر 4: صيانة قادمة --><div class="news-card">
+                <h3><i class="icon fas fa-tools"></i> صيانة دورية مجدولة</h3>
+                <p>سنقوم بصيانة مجدولة لتحسين أداء السيرفرات في 2025/11/05. قد يحدث انقطاع بسيط. نشكر تفهمكم.</p>
+                <span class="date">تاريخ الإعلان: 2025/10/25</span>
+            </div>
+        </div>
+    </div>
+    
     <div class="slider">
       <!-- صور متحركة (GIFs) - أصبحت هي الأولى --><div class="slide active"><img src="https://i.pinimg.com/originals/59/69/84/59698460a33a71e42ddf46e185e17737.gif" alt="Ghost in the Shell GIF"></div>
       <div class="slide"><img src="https://wallpapers-clan.com/wp-content/uploads/2024/03/batman-rain-gif-preview-desktop-wallpaper.gif" alt="Batman Rain GIF"></div>
