@@ -81,26 +81,54 @@
     }
     .dots button.active{background:#ff6600;box-shadow:0 0 15px #ff3300}
 
-    .apps{max-width:1100px;margin:80px auto;background:rgba(30,10,0,0.3);padding:30px;border-radius:15px;backdrop-filter:blur(8px);border:1px solid rgba(255,100,0,0.2)}
-    .apps h2{text-align:center;color:#ffa42b;font-size:2rem;text-shadow:0 0 20px #ff5500;margin-bottom:25px}
-    /* تعديل: تصميم الشبكة ليسمح ببطاقات متعددة */
-    .apps-grid{display:flex;justify-content:center;flex-wrap: wrap; gap:20px; min-height: 200px;} 
+    /* تعديل: تقليل الحشو والهوامش لصندوق التطبيقات الرئيسي */
+    .apps{max-width:1100px;margin:50px auto;background:rgba(30,10,0,0.3);padding:20px;border-radius:15px;backdrop-filter:blur(8px);border:1px solid rgba(255,100,0,0.2)}
+    .apps h2{text-align:center;color:#ffa42b;font-size:1.8rem;text-shadow:0 0 20px #ff5500;margin-bottom:20px}
+    
+    /* تعديل: تصميم الشبكة ليسمح ببطاقات متعددة ومتقاربة */
+    .apps-grid{display:flex;justify-content:center;flex-wrap: wrap; gap:15px; min-height: 100px;} 
 
-    .app-card{background:rgba(40,10,0,0.4);border:1px solid rgba(255,100,0,0.2);border-radius:10px;padding:15px;transition:0.3s;cursor:pointer;display:flex;flex-direction:column;gap:10px; max-width: 300px; width: 100%;}
+    /* تعديل: تصغير حجم البطاقة بشكل كبير */
+    .app-card{
+        background:rgba(40,10,0,0.4);border:1px solid rgba(255,100,0,0.2);border-radius:10px;
+        padding:10px; /* تقليل الحشو الداخلي */
+        transition:0.3s;cursor:pointer;display:flex;flex-direction:column;gap:5px; 
+        max-width: 180px; /* تحديد عرض أقصى صغير */
+        width: 100%;
+    }
     .app-card:hover{transform:translateY(-5px);box-shadow:0 0 25px rgba(255,80,0,0.4)}
-    .app-card img{width:100%;height:160px;border-radius:10px;object-fit:cover;margin-bottom:10px; background-color: rgba(255, 255, 255, 0.1);}
-    .app-card h3{color:#ffae42;margin-bottom:6px;text-shadow:0 0 12px #ff4400; display: flex; align-items: center; justify-content: flex-start;} /* تعديل flex هنا لترتيب العنوان مع الشارة */
-    .app-card p{font-size:0.85rem;color:#ffddaa;opacity:0.8;margin-bottom:8px}
+    
+    /* تعديل: تصغير حجم الصورة/الأيقونة */
+    .app-card img{
+        width:100%;
+        height:100px; /* ارتفاع صغير للصورة */
+        border-radius:8px;
+        object-fit:cover;
+        margin-bottom:5px; 
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    /* تعديل: تصغير حجم العنوان */
+    .app-card h3{
+        color:#ffae42;margin-bottom:3px;text-shadow:0 0 12px #ff4400; 
+        display: flex; align-items: center; justify-content: flex-start;
+        font-size: 0.9rem; /* تصغير حجم الخط */
+    } 
+    /* تعديل: تصغير حجم الوصف */
+    .app-card p{
+        font-size:0.7rem; /* تصغير حجم الخط جداً */
+        color:#ffddaa;opacity:0.8;margin-bottom:5px;
+        line-height: 1.3; /* تحسين قراءة النص الصغير */
+    }
     
     /* شارة "قريباً" الجديدة بجانب العنوان */
     .coming-soon-badge {
-        font-size: 0.75rem;
+        font-size: 0.6rem;
         font-weight: 600;
         color: #ffaa33;
         background: rgba(255, 102, 0, 0.2);
-        padding: 3px 8px;
-        border-radius: 5px;
-        margin-right: 10px; /* مسافة بين العنوان والشارة */
+        padding: 2px 5px;
+        border-radius: 4px;
+        margin-right: 8px; /* مسافة بين العنوان والشارة */
         border: 1px solid rgba(255, 102, 0, 0.4);
         text-shadow: none;
     }
@@ -108,22 +136,23 @@
     /* تعديل: تصميم أزرار التطبيق لتكون متجاورة ومتعددة */
     .app-buttons {
         display: flex;
-        gap: 8px; /* مسافة بين الأزرار */
-        justify-content: flex-start; /* ترتيب الأزرار من اليمين إلى اليسار */
+        gap: 5px; /* مسافة أقل بين الأزرار */
+        justify-content: flex-start; 
     }
     .app-buttons .btn{
-        flex: 1; /* جعل الأزرار تتمدد بشكل متساو */
-        padding:8px 0;
+        flex: 1; 
+        padding:6px 0; /* تصغير حشو الأزرار */
         border:none;
-        border-radius:8px;
+        border-radius:6px;
         font-weight:700;
         color:#000;
         background:linear-gradient(90deg,#ff6600,#ffb300);
         text-align:center;
         cursor:pointer;
         transition:0.3s;
-        text-decoration: none; /* مهم للروابط */
-        max-width: 100px; /* تحديد عرض أقصى لتبدو متناسقة */
+        text-decoration: none; 
+        max-width: 80px; /* تحديد عرض أقصى أصغر */
+        font-size: 0.75rem; /* تصغير حجم خط الزر */
     }
     .app-buttons .btn:hover{background:linear-gradient(90deg,#ffb300,#ff3300)}
     
@@ -289,39 +318,39 @@
             margin-bottom: 15px;
         }
         .apps-grid {
-             gap: 10px; /* تقليل المسافة بين البطاقات */
+             gap: 8px; /* تقليل المسافة بين البطاقات */
         }
 
-        /* بطاقة التطبيق (App Card) - تم تصغيرها أكثر */
+        /* بطاقة التطبيق (App Card) - تم تصغيرها جداً للهواتف */
         .app-card {
-            max-width: 100%; 
-            padding: 10px; /* تصغير حشو البطاقة */
-            gap: 6px; /* تقليل المسافة بين عناصر البطاقة */
+            max-width: 150px; /* عرض أقصى أصغر للهاتف */
+            padding: 8px; /* حشو أصغر */
+            gap: 4px; /* مسافة أقل بين العناصر */
         }
         .app-card img {
-            height: 100px; /* ارتفاع الصورة المحدد للهاتف (أصغر) */
-            margin-bottom: 5px;
+            height: 80px; /* ارتفاع صغير جداً للصورة */
+            margin-bottom: 4px;
         }
         .app-card h3 {
-            font-size: 1rem; /* تصغير حجم عنوان التطبيق */
-            margin-bottom: 2px;
+            font-size: 0.8rem; /* تصغير حجم عنوان التطبيق */
+            margin-bottom: 0px;
         }
         .app-card p {
-            font-size: 0.7rem; /* تصغير حجم خط الوصف */
-            margin-bottom: 5px;
+            font-size: 0.6rem; /* أصغر حجم خط للوصف */
+            margin-bottom: 4px;
         }
         
         /* شارة "قريباً" */
         .coming-soon-badge {
-            font-size: 0.6rem;
-            padding: 1px 4px;
+            font-size: 0.55rem;
+            padding: 1px 3px;
         }
 
         /* الأزرار */
         .app-buttons .btn {
-            max-width: 80px;
-            padding: 5px 0; 
-            font-size: 0.8rem; 
+            max-width: 70px;
+            padding: 4px 0; 
+            font-size: 0.7rem; 
         }
 
         /* الفوتر (Footer) */
@@ -414,7 +443,35 @@
             <button class="btn open-desc">وصف</button>
           </div>
         </div>
-        <!-- نهاية بطاقة التطبيق --></div>
+        <!-- نهاية بطاقة التطبيق -->
+        
+        <!-- بطاقة تطبيق مثال ثاني --><div class="app-card" 
+             data-title="Cyber Tool" 
+             data-desc="أداة تحليل شبكات متقدمة بواجهة سايبر بانك. تحليل حزم البيانات واستكشاف نقاط الضعف الافتراضية.">
+          <!-- استخدام صورة placeholder مؤقتاً لتحديد الحجم -->
+          <img src="https://placehold.co/180x100/333333/ffaa33?text=A-2">
+          <h3>Cyber Tool <span class="coming-soon-badge">قريباً</span></h3>
+          <p>أداة تحليل شبكات متقدمة لتحديد الثغرات.</p>
+          <div class="app-buttons">
+            <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
+            <button class="btn open-desc">وصف</button>
+          </div>
+        </div>
+        <!-- نهاية بطاقة تطبيق مثال ثاني -->
+        
+        <!-- بطاقة تطبيق مثال ثالث --><div class="app-card" 
+             data-title="Data Vault" 
+             data-desc="تطبيق لحماية الملفات بـ 128-bit Encryption وتخزين آمن للمعلومات الحساسة والمحمية.">
+          <img src="https://placehold.co/180x100/550000/fff3e0?text=Vault">
+          <h3>Data Vault <span class="coming-soon-badge">قريباً</span></h3>
+          <p>تطبيق لتشفير الملفات وتخزين آمن للمعلومات.</p>
+          <div class="app-buttons">
+            <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
+            <button class="btn open-desc">وصف</button>
+          </div>
+        </div>
+        <!-- نهاية بطاقة تطبيق مثال ثالث -->
+      </div>
     </section>
 
     <!-- النافذة المنبثقة لعرض وصف التطبيق --><div class="modal" id="appModal">
