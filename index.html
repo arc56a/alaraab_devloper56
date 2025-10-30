@@ -16,7 +16,26 @@
       overflow-x:hidden;
       min-height:100vh;
     }
+    
+    /* ------------------------------------------- */
+    /* تأثير Glitch النيون (New Neon Glitch Effect) */
+    /* ------------------------------------------- */
+    @keyframes neon-glitch-anim {
+        0% { text-shadow: 0 0 5px #ff6600, 0 0 10px #ff3300; transform: skewX(0deg); }
+        5% { text-shadow: none; transform: skewX(-3deg); }
+        10% { text-shadow: 0 0 5px #ff6600; transform: skewX(1deg); }
+        15% { text-shadow: 0 0 10px #ff3300; transform: skewX(0deg); }
+        100% { text-shadow: 0 0 5px #ff6600, 0 0 10px #ff3300; }
+    }
+    
+    .neon-glitch:hover {
+        animation: neon-glitch-anim 0.7s infinite alternate;
+        color: #fff; /* لون فاتح أثناء التوهج */
+    }
 
+    /* ------------------------------------------- */
+    /* الخلفية والتراكب */
+    /* ------------------------------------------- */
     #bg-video{
       position:fixed;
       top:0;left:0;
@@ -32,9 +51,12 @@
       z-index:-2;
     }
 
+    /* ------------------------------------------- */
+    /* الهيدر والعنوان */
+    /* ------------------------------------------- */
     header{
       display:flex;justify-content:space-between;align-items:center;
-      padding:30px 60px;
+      padding:30px 60px 10px 60px; /* تقليل الحشو السفلي لإفساح المجال للوحة القيادة */
     }
     header h1{
       font-size:3rem;
@@ -60,8 +82,53 @@
       color:#ff6600;
       transition:0.3s;
     }
-    .socials a:hover{color:#ffaa33;text-shadow:0 0 15px #ff3300;transform:scale(1.2)}
+    /* تطبيق تأثير النيون Glitch على أيقونات التواصل الاجتماعي */
+    .socials a:hover{color:#ffaa33;text-shadow:0 0 15px #ff3300;transform:scale(1.2)} 
 
+    /* ------------------------------------------- */
+    /* لوحة التحكم المصغرة (New Dashboard) */
+    /* ------------------------------------------- */
+    .mini-dashboard{
+        max-width: 1100px;
+        width: 90%;
+        margin: 10px auto 40px auto; /* هامش علوي بعد الهيدر وهامش سفلي قبل السلايدر */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(40, 10, 0, 0.4);
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 120, 0, 0.3);
+        box-shadow: 0 0 15px rgba(255, 80, 0, 0.15);
+    }
+    .dash-item{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.8rem;
+        color: #ffaa33;
+    }
+    .dash-icon{
+        color: #ff3300;
+        font-size: 1.2rem;
+        text-shadow: 0 0 8px #ff3300;
+    }
+    .dash-value{
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #ffe9c4;
+    }
+    .status-dot{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #10b981; /* أخضر للدلالة على الاتصال */
+        box-shadow: 0 0 8px #10b981;
+    }
+
+    /* ------------------------------------------- */
+    /* شريط الصور (Slider) */
+    /* ------------------------------------------- */
     .slider{
       position:relative;margin:50px auto;width:90%;max-width:1100px;height:500px;overflow:hidden;
       border:2px solid rgba(255,120,0,0.3);border-radius:20px;
@@ -81,46 +148,43 @@
     }
     .dots button.active{background:#ff6600;box-shadow:0 0 15px #ff3300}
 
-    /* تعديل: تقليل الحشو والهوامش لصندوق التطبيقات الرئيسي */
+    /* ------------------------------------------- */
+    /* قسم التطبيقات (Apps Section) */
+    /* ------------------------------------------- */
     .apps{max-width:1100px;margin:50px auto;background:rgba(30,10,0,0.3);padding:20px;border-radius:15px;backdrop-filter:blur(8px);border:1px solid rgba(255,100,0,0.2)}
     .apps h2{text-align:center;color:#ffa42b;font-size:1.8rem;text-shadow:0 0 20px #ff5500;margin-bottom:20px}
     
-    /* تعديل: تصميم الشبكة ليسمح ببطاقات متعددة ومتقاربة */
     .apps-grid{display:flex;justify-content:center;flex-wrap: wrap; gap:15px; min-height: 100px;} 
 
-    /* تعديل: تصغير حجم البطاقة بشكل كبير */
     .app-card{
         background:rgba(40,10,0,0.4);border:1px solid rgba(255,100,0,0.2);border-radius:10px;
-        padding:10px; /* تقليل الحشو الداخلي */
+        padding:10px; 
         transition:0.3s;cursor:pointer;display:flex;flex-direction:column;gap:5px; 
-        max-width: 180px; /* تحديد عرض أقصى صغير */
+        max-width: 180px; 
         width: 100%;
     }
+    /* تطبيق النيون Glitch على بطاقات التطبيقات عند التحويم */
     .app-card:hover{transform:translateY(-5px);box-shadow:0 0 25px rgba(255,80,0,0.4)}
     
-    /* تعديل: تصغير حجم الصورة/الأيقونة */
     .app-card img{
         width:100%;
-        height:100px; /* ارتفاع صغير للصورة */
+        height:100px; 
         border-radius:8px;
         object-fit:cover;
         margin-bottom:5px; 
         background-color: rgba(255, 255, 255, 0.1);
     }
-    /* تعديل: تصغير حجم العنوان */
     .app-card h3{
         color:#ffae42;margin-bottom:3px;text-shadow:0 0 12px #ff4400; 
         display: flex; align-items: center; justify-content: flex-start;
-        font-size: 0.9rem; /* تصغير حجم الخط */
+        font-size: 0.9rem; 
     } 
-    /* تعديل: تصغير حجم الوصف */
     .app-card p{
-        font-size:0.7rem; /* تصغير حجم الخط جداً */
+        font-size:0.7rem; 
         color:#ffddaa;opacity:0.8;margin-bottom:5px;
-        line-height: 1.3; /* تحسين قراءة النص الصغير */
+        line-height: 1.3; 
     }
     
-    /* شارة "قريباً" الجديدة بجانب العنوان */
     .coming-soon-badge {
         font-size: 0.6rem;
         font-weight: 600;
@@ -128,20 +192,19 @@
         background: rgba(255, 102, 0, 0.2);
         padding: 2px 5px;
         border-radius: 4px;
-        margin-right: 8px; /* مسافة بين العنوان والشارة */
+        margin-right: 8px; 
         border: 1px solid rgba(255, 102, 0, 0.4);
         text-shadow: none;
     }
     
-    /* تعديل: تصميم أزرار التطبيق لتكون متجاورة ومتعددة */
     .app-buttons {
         display: flex;
-        gap: 5px; /* مسافة أقل بين الأزرار */
+        gap: 5px; 
         justify-content: flex-start; 
     }
     .app-buttons .btn{
         flex: 1; 
-        padding:6px 0; /* تصغير حشو الأزرار */
+        padding:6px 0; 
         border:none;
         border-radius:6px;
         font-weight:700;
@@ -151,23 +214,31 @@
         cursor:pointer;
         transition:0.3s;
         text-decoration: none; 
-        max-width: 80px; /* تحديد عرض أقصى أصغر */
-        font-size: 0.75rem; /* تصغير حجم خط الزر */
+        max-width: 80px; 
+        font-size: 0.75rem; 
     }
-    .app-buttons .btn:hover{background:linear-gradient(90deg,#ffb300,#ff3300)}
+    /* تطبيق النيون Glitch على الأزرار عند التحويم */
+    .app-buttons .btn:hover:not(.coming-soon){
+        background:linear-gradient(90deg,#ffb300,#ff3300);
+        animation: neon-glitch-anim 0.7s infinite alternate;
+        box-shadow: 0 0 20px rgba(255, 51, 0, 0.8); 
+        color: #fff;
+    }
     
-    /* أنماط زر "تحميل" لجعله يبدو غير متاح حاليًا ومضلل */
     .app-buttons .coming-soon {
         background: rgba(100, 100, 100, 0.3) !important; 
         color: rgba(255, 255, 255, 0.5) !important;
         cursor: default !important;
         box-shadow: none !important;
+        animation: none !important; /* تعطيل Glitch على الزر المعطل */
     }
     .app-buttons .coming-soon:hover {
         background: rgba(100, 100, 100, 0.3) !important;
     }
     
-    /* أنماط النافذة المنبثقة العامة */
+    /* ------------------------------------------- */
+    /* النوافذ المنبثقة والتحقق */
+    /* ------------------------------------------- */
     .modal{
       display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:10;
     }
@@ -182,19 +253,19 @@
 
     /* أنماط ReCAPTCHA Modal */
     #recaptcha-modal {
-        display: flex; /* إظهارها افتراضياً عند التحميل */
-        background: #000; /* خلفية سوداء */
+        display: flex;
+        background: #000;
         justify-content: center;
         align-items: center;
-        z-index: 1000; /* أعلى z-index لضمان أنها في المقدمة */
+        z-index: 1000;
         position: fixed;
         inset: 0;
-        opacity: 1; /* التأكد من أنها مرئية */
+        opacity: 1;
         transition: opacity 0.5s ease-out;
     }
     #recaptcha-modal.hidden {
         opacity: 0;
-        pointer-events: none; /* تعطيل التفاعل بعد الاختفاء */
+        pointer-events: none;
     }
     .recaptcha-content {
         background: rgba(30,10,0,0.9);
@@ -219,20 +290,19 @@
         margin: 30px auto 0 auto;
         padding: 10px 20px;
         width: fit-content;
-        background: rgba(255, 255, 255, 0.05); /* خلفية خفيفة للحاوية */
+        background: rgba(255, 255, 255, 0.05); 
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.3s;
         border: 1px solid rgba(255, 100, 0, 0.3);
     }
-    /* نمط لتعطيل النقر (فترة الانتظار) */
     #custom-checkbox-container.disabled {
         opacity: 0.5;
         cursor: default;
         pointer-events: none;
     }
 
-    #custom-checkbox-container:hover:not(.disabled) { /* التأثير فقط عندما لا يكون معطلاً */
+    #custom-checkbox-container:hover:not(.disabled) { 
         background: rgba(255, 102, 0, 0.1);
         box-shadow: 0 0 15px rgba(255, 179, 0, 0.3);
     }
@@ -251,7 +321,7 @@
     }
     
     #custom-checkbox.checked {
-        background-color: #10b981; /* أخضر عند التحقق */
+        background-color: #10b981; 
         border-color: #10b981;
         box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
     }
@@ -259,107 +329,118 @@
     #check-icon {
         color: #fff;
         font-size: 18px;
-        display: none; /* مخفي مبدئياً */
+        display: none; 
     }
     
     #custom-checkbox.checked #check-icon {
-        display: block; /* يظهر عند التحقق */
+        display: block; 
     }
     
     #custom-checkbox-container label {
         font-size: 1rem;
         color: #ffaa33;
-        font-weight: 400; /* تغيير الخط لجعله أقل بروزاً من العنوان */
+        font-weight: 400; 
         cursor: pointer;
     }
     
-    /* أنماط الفوتر (Footer) لتوسيط النص وضمان نمط السايبر بنك */
+    /* ------------------------------------------- */
+    /* الفوتر (Footer) */
+    /* ------------------------------------------- */
     footer {
-        text-align: center; /* توجيه النص إلى الوسط */
-        padding: 20px 0; /* مسافة حول النص */
+        text-align: center; 
+        padding: 20px 0; 
         color: #ffa42b;
         font-size: 0.9rem;
-        font-family:'Orbitron',sans-serif; /* تطبيق خط القالب */
-        text-shadow: 0 0 5px rgba(255, 80, 0, 0.4); /* إضافة تأثير توهج خفيف */
+        font-family:'Orbitron',sans-serif; 
+        text-shadow: 0 0 5px rgba(255, 80, 0, 0.4); 
     }
 
     /* ------------------------------------------- */
     /* تحسينات ملائمة أجهزة الهواتف (Mobile First/Media Queries) */
     /* ------------------------------------------- */
     @media (max-width: 640px) {
-        /* الهيدر والعنوان */
         header {
-          padding: 15px 20px; /* تقليل حشو الهيدر */
+          padding: 15px 20px 5px 20px; 
         }
         header h1 {
-          font-size: 1.8rem; /* تصغير حجم العنوان أكثر */
+          font-size: 1.8rem; 
         }
         header p {
-            font-size: 0.75rem; /* تصغير حجم النص المرافق */
+            font-size: 0.75rem; 
         }
         .socials a {
           font-size: 1.4rem;
           margin-left: 8px;
         }
 
-        /* شريط الصور */
+        /* لوحة التحكم المصغرة على الهاتف */
+        .mini-dashboard {
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            margin: 10px auto 25px auto;
+            align-items: flex-start;
+        }
+        .dash-item {
+            font-size: 0.7rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .dash-icon {
+            font-size: 1rem;
+        }
+        
         .slider {
-          height: 250px; /* تقليل ارتفاع شريط الصور أكثر */
+          height: 250px; 
           margin: 25px auto;
         }
 
-        /* قسم التطبيقات الرئيسي (تم تصغيره أكثر) */
         .apps {
-          padding: 10px 5px; /* تقليل الحشو الأفقي والعمودي لصندوق التطبيقات */
-          margin: 20px auto; /* تقليل الهامش العلوي/السفلي */
+          padding: 10px 5px; 
+          margin: 20px auto; 
         }
         .apps h2 {
             font-size: 1.5rem;
             margin-bottom: 15px;
         }
         .apps-grid {
-             gap: 8px; /* تقليل المسافة بين البطاقات */
+             gap: 8px; 
         }
 
-        /* بطاقة التطبيق (App Card) - تم تصغيرها جداً للهواتف */
         .app-card {
-            max-width: 150px; /* عرض أقصى أصغر للهاتف */
-            padding: 8px; /* حشو أصغر */
-            gap: 4px; /* مسافة أقل بين العناصر */
+            max-width: 150px; 
+            padding: 8px; 
+            gap: 4px; 
         }
         .app-card img {
-            height: 80px; /* ارتفاع صغير جداً للصورة */
+            height: 80px; 
             margin-bottom: 4px;
         }
         .app-card h3 {
-            font-size: 0.8rem; /* تصغير حجم عنوان التطبيق */
+            font-size: 0.8rem; 
             margin-bottom: 0px;
         }
         .app-card p {
-            font-size: 0.6rem; /* أصغر حجم خط للوصف */
+            font-size: 0.6rem; 
             margin-bottom: 4px;
         }
         
-        /* شارة "قريباً" */
         .coming-soon-badge {
             font-size: 0.55rem;
             padding: 1px 3px;
         }
 
-        /* الأزرار */
         .app-buttons .btn {
             max-width: 70px;
             padding: 4px 0; 
             font-size: 0.7rem; 
         }
 
-        /* الفوتر (Footer) */
         footer {
-            font-size: 0.7rem; /* تصغير حجم خط حقوق النشر */
+            font-size: 0.7rem; 
             padding: 10px 0;
         }
         
-        /* نافذة التحقق */
         .recaptcha-content {
             padding: 15px;
         }
@@ -411,11 +492,34 @@
         <!-- تم إضافة id="movingText" للتحكم به عبر الجافاسكربت --><h1 id="movingText">العرّاب</h1>
         <p>ar_c56</p>
       </div>
-      <div class="socials">
-        <!-- تم تحديث رابط الإنستغرام --><a href="https://www.instagram.com/ar_c56?igsh=MXFyYWl3cXQ2OGJ2ZQ==" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-        <!-- تم تحديث رابط التلغرام --><a href="https://t.me/darkzon39" title="Telegram" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+      <!-- تم إضافة فئة neon-glitch لأيقونات التواصل الاجتماعي --><div class="socials">
+        <a href="https://www.instagram.com/ar_c56?igsh=MXFyYWl3cXQ2OGJ2ZQ==" title="Instagram" target="_blank" class="neon-glitch"><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/darkzon39" title="Telegram" target="_blank" class="neon-glitch"><i class="fab fa-telegram-plane"></i></a>
       </div>
     </header>
+
+    <!-- لوحة التحكم المصغرة الجديدة (Mini Dashboard) --><div class="mini-dashboard">
+        <!-- مؤشر حالة النظام -->
+        <div class="dash-item">
+            <span class="status-dot"></span>
+            <span>حالة النظام:</span>
+            <span class="dash-value">Online</span>
+        </div>
+        
+        <!-- عداد حركة مرور البيانات -->
+        <div class="dash-item">
+            <i class="dash-icon fas fa-chart-line"></i>
+            <span>حركة البيانات:</span>
+            <span class="dash-value" id="dataTraffic">0.0 KB/s</span>
+        </div>
+        
+        <!-- التاريخ والوقت الفني -->
+        <div class="dash-item">
+            <i class="dash-icon fas fa-clock"></i>
+            <span>وقت النظام:</span>
+            <span class="dash-value" id="systemClock">--</span>
+        </div>
+    </div>
 
     <div class="slider">
       <!-- صورة 1 الجديدة --><div class="slide active"><img src="https://wallpapercave.com/wp/wp12371287.jpg"></div>
@@ -429,7 +533,7 @@
       
       <!-- منطقة عرض التطبيقات الثابتة --><div class="apps-grid">
         
-        <!-- بطاقة تطبيق RF Radar الثابتة --><div class="app-card" 
+        <!-- بطاقة تطبيق RF Radar الثابتة --><div class="app-card neon-glitch" 
              data-title="RF Radar" 
              data-desc="تطبيق RF Radar هو تطبيق يظهر لك مواصفات هاتفك ويحتوي على ميزة رادار البلوتوث والواي فاي التي تتيح لك قياس قوة الإشارات وبعد المسافة.">
           <!-- تحديث رابط الصورة هنا --><img src="https://c.top4top.io/p_3589batq51.png">
@@ -439,13 +543,12 @@
           <div class="app-buttons">
             <!-- الزر الأول (يمين): "تحميل" - مضلل وغير فعال عند النقر -->
             <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
-            <!-- الزر الثاني (وسط): "وصف" -->
-            <button class="btn open-desc">وصف</button>
+            <!-- الزر الثاني (وسط): "وصف" --><button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
         <!-- نهاية بطاقة التطبيق -->
         
-        <!-- بطاقة تطبيق مثال ثاني --><div class="app-card" 
+        <!-- بطاقة تطبيق مثال ثاني --><div class="app-card neon-glitch" 
              data-title="Cyber Tool" 
              data-desc="أداة تحليل شبكات متقدمة بواجهة سايبر بانك. تحليل حزم البيانات واستكشاف نقاط الضعف الافتراضية.">
           <!-- استخدام صورة placeholder مؤقتاً لتحديد الحجم -->
@@ -454,12 +557,12 @@
           <p>أداة تحليل شبكات متقدمة لتحديد الثغرات.</p>
           <div class="app-buttons">
             <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
-            <button class="btn open-desc">وصف</button>
+            <button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
         <!-- نهاية بطاقة تطبيق مثال ثاني -->
         
-        <!-- بطاقة تطبيق مثال ثالث --><div class="app-card" 
+        <!-- بطاقة تطبيق مثال ثالث --><div class="app-card neon-glitch" 
              data-title="Data Vault" 
              data-desc="تطبيق لحماية الملفات بـ 128-bit Encryption وتخزين آمن للمعلومات الحساسة والمحمية.">
           <img src="https://placehold.co/180x100/550000/fff3e0?text=Vault">
@@ -467,7 +570,7 @@
           <p>تطبيق لتشفير الملفات وتخزين آمن للمعلومات.</p>
           <div class="app-buttons">
             <a href="javascript:void(0)" class="btn coming-soon" target="_blank">تحميل</a> 
-            <button class="btn open-desc">وصف</button>
+            <button class="btn open-desc neon-glitch">وصف</button>
           </div>
         </div>
         <!-- نهاية بطاقة تطبيق مثال ثالث -->
@@ -558,6 +661,35 @@
         }));
     };
 
+    /* ------------------------------------------- */
+    /* منطق لوحة التحكم المصغرة (Mini Dashboard Logic) */
+    /* ------------------------------------------- */
+    function updateDashboard() {
+        // تحديث الوقت والتاريخ بصيغة فنية
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        const systemTimeElement = document.getElementById('systemClock');
+        if (systemTimeElement) {
+            systemTimeElement.textContent = `${year}/${month}/${day} T ${hours}:${minutes}:${seconds} Z`;
+        }
+
+        // تحديث حركة مرور البيانات (قيمة وهمية ديناميكية)
+        const trafficElement = document.getElementById('dataTraffic');
+        if (trafficElement) {
+            // توليد قيمة بين 0.1 و 2.5 كيلوبايت/ثانية
+            const trafficValue = (Math.random() * 2.4 + 0.1).toFixed(1);
+            trafficElement.textContent = `${trafficValue} KB/s`;
+        }
+    }
+    
+    // تشغيل تحديث لوحة التحكم كل ثانية
+    let dashboardInterval;
 
     // -------------------------------------------
     // وظيفة تشغيل محتوى الصفحة الأساسي
@@ -574,6 +706,11 @@
         
         // إعداد مستمعي الأحداث للنافذة المنبثقة
         setupModalListeners();
+        
+        // بدء تحديث لوحة التحكم
+        updateDashboard(); // التحديث الفوري
+        if (dashboardInterval) clearInterval(dashboardInterval);
+        dashboardInterval = setInterval(updateDashboard, 1000); // التحديث كل ثانية
     }
 
     // -------------------------------------------
